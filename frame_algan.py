@@ -167,9 +167,9 @@ class p1(wx.Panel):
         wx.Panel.__init__(self, parent, -1, size=(800, 400))
 
         # how to create canvas for plots... figsize=(inches, inches), dpi=pixels per inch (zoom)
-        self.figure = matplotlib.figure.Figure(figsize=(8, 10), dpi=80, facecolor='w', edgecolor='k')
+        self.figure = matplotlib.figure.Figure(figsize=(7.68, 10), dpi=80, facecolor='w', edgecolor='k')
         
-        # here I changed visibility of my plots to look greater!
+        # here I changed visibility of my plots to look pretty
         self.figure.subplots_adjust(left=0.10, bottom=0.1, right=0.95, top=0.89, hspace=0.7, wspace=0.7)
         
         self.axes = self.figure.add_subplot(311)
@@ -200,12 +200,10 @@ class p1(wx.Panel):
             yval.append(sample.refractiveIndex(wavelen))
             #print wavelen, ' ', sample.refractiveIndex(wavelen)
 
-        #self.axes.semilogy()
         self.axes2.plot(xval, yval)
         self.axes2.set_xlabel('wavelength, nm')
         self.axes2.set_ylabel('refractive index')
         self.axes2.grid(True)
-
 
         self.axes3 = self.figure.add_subplot(313, axisbg='w', title='Transmission')
         xval = []
@@ -217,7 +215,6 @@ class p1(wx.Panel):
             yval.append(sample.transmission1(wavelen, 1*1e-6, 0.45))
             #print wavelen, ' ', sample.transmission1(wavelen, 1*1e-6, 0.45)
 
-        #self.axes.semilogy()
         self.axes3.plot(xval, yval)
         self.axes3.set_xlabel('wavelength, nm')
         self.axes3.set_ylabel('transmission, %')
@@ -230,12 +227,13 @@ class TestFrame(wx.Frame):
         wx.Frame.__init__(self, parent, title=title)
 
         self.Position = (200, 50)
-        self.ClientSize = (900, 600)        # Set client area. Frame size is unimportant.
+        self.ClientSize = (900, 800)# Set clientarea. Framesize is unimportant.
 
         frm_pnl = wx.Panel(self)
-        frm_pnl.SetBackgroundColour((0, 179, 0))
+        frm_pnl.SetBackgroundColour((0, 0, 0))
         #self.sp = wx.SplitterWindow(frm_pnl)
-        left_panel  = p1(frm_pnl)
+        left_panel  = wx.Panel(frm_pnl)
+        #left_panel  = p1(frm_pnl)
         left_panel.SetBackgroundColour((179, 179, 179))
         right_panel = wx.Panel(frm_pnl)
         right_panel.SetBackgroundColour((255, 255, 255))
@@ -247,7 +245,7 @@ class TestFrame(wx.Frame):
 
         frmPnl_horzSizer = wx.BoxSizer(wx.HORIZONTAL)
         frmPnl_horzSizer.Add( left_panel,  proportion=1, flag=wx.EXPAND )
-        frmPnl_horzSizer.Add( right_panel, proportion=2, flag=wx.EXPAND )
+        frmPnl_horzSizer.Add( right_panel, proportion=1, flag=wx.EXPAND )
 
         #-----  Invoke the sizer via its container.
         

@@ -127,7 +127,9 @@ class AlGaN():
         b = [1 for i in range(9)]
         b[0] = A2 * a[0] + C2
         b[8] = A3 * a[8] + C3
-        '''b[4] = 0.206 * b[0] + 0.794 * b[8]
+        '''
+        noncorrect version, but it was used in scientific work
+        b[4] = 0.206 * b[0] + 0.794 * b[8]
         b[2] = 0.312 * b[0] + 0.688 * b[4]
         b[6] = 0.392 * b[4] + 0.608 * b[8]
         b[1] = 0.389 * b[0] + 0.611 * b[2]
